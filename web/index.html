@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091923">
+  <meta name="description" content="Создайте пассажира «Титаника» и узнайте прогноз обученной нейросети. Интерактивный эксперимент в стиле морского приключения.">
+  <title>Titanic — ваша история на борту</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-ship" viewBox="0 0 24 24"><path d="M3 13h18l-4 6H7l-4-6Zm4-4h10v4H7zm2-5v5m6-5v5M3 22l3-1 3 1 3-1 3 1 3-1 3 1"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" transform="rotate(-12 12 12)"/><path d="M8 9h.01M16 15h.01M12 12h.01" stroke-width="3"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.1"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6 6-2Z"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 8a8 8 0 1 0 0 8M20 3v5h-5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></symbol>
+    <symbol id="i-anchor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M7 10h10M3 14v3m0-3h3m15 0v3m0-3h-3M3 14a9 9 0 0 0 18 0"/></symbol>
+  </svg>
+  <div class="app-shell">
+    <header class="topbar">
+      <a href="/" class="brand" aria-label="Titanic — главная">
+        <span class="brand-mark"><svg><use href="#i-ship"/></svg></span>
+        <span><strong>TITANIC</strong><small>ВАША ИСТОРИЯ НА БОРТУ</small></span>
+      </a>
+      <nav aria-label="Основная навигация"><span class="nav-current">ЭКСПЕДИЦИЯ <span>01</span></span><button id="about-open" class="nav-about" type="button">Об эксперименте <svg><use href="#i-info"/></svg></button></nav>
+      <div class="connection" id="connection"><span class="status-dot"></span><span id="connection-text">ПОДКЛЮЧЕНИЕ</span></div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="main-title">
+        <div><p class="eyebrow"><span class="tiny-line"></span> ИНТЕРАКТИВНЫЙ ЭКСПЕРИМЕНТ</p><h1 id="main-title">Один билет. <em>Ваша история.</em></h1><p class="intro-copy">Поднимитесь на борт и узнайте, какой исход предскажет нейросеть.</p></div>
+        <div class="voyage-stamp"><svg><use href="#i-compass"/></svg><div><span>САУТГЕМПТОН <b>→</b> НЬЮ-ЙОРК</span><small>СЕВЕРНАЯ АТЛАНТИКА &nbsp; / &nbsp; 1912</small></div></div>
+      </section>
+
+      <div class="game-layout">
+        <section class="passenger-panel" aria-labelledby="passenger-title">
+          <div class="panel-heading"><div><span class="step-label">ШАГ 01</span><h2 id="passenger-title">Создайте пассажира</h2></div><button class="icon-button dice" id="randomize" type="button" aria-label="Случайный пассажир" title="Случайный пассажир"><svg><use href="#i-dice"/></svg></button></div>
+          <form id="passenger-form">
+            <div class="field name-field"><label for="passenger-name">Имя на билете <span>необязательно</span></label><input id="passenger-name" type="text" maxlength="40" placeholder="Ваше имя" autocomplete="given-name"></div>
+            <fieldset class="field"><legend>Пол пассажира</legend><div class="segmented sex-options"><label><input type="radio" name="sex" value="female" checked><span><b>♀</b> Женщина</span></label><label><input type="radio" name="sex" value="male"><span><b>♂</b> Мужчина</span></label></div></fieldset>
+            <div class="field age-field"><div class="label-row"><label for="age">Возраст</label><div class="number-with-unit"><input type="number" id="age" name="age" min="0" max="100" step="0.01" value="28" aria-label="Возраст в годах" placeholder="—"><span>лет</span></div></div><input id="age-range" type="range" min="0" max="100" step="1" value="28" aria-label="Выбрать возраст"><div class="range-labels"><span>0 лет</span><span>100 лет</span></div></div>
+            <fieldset class="field class-field"><legend>Класс билета <svg class="label-icon"><use href="#i-spark"/></svg></legend><div class="class-options"><label><input type="radio" name="pclass" value="1"><span><b>I</b><strong>Первый</strong><small>Роскошь</small></span></label><label><input type="radio" name="pclass" value="2" checked><span><b>II</b><strong>Второй</strong><small>Комфорт</small></span></label><label><input type="radio" name="pclass" value="3"><span><b>III</b><strong>Третий</strong><small>Новая жизнь</small></span></label></div></fieldset>
+            <fieldset class="field family-field"><legend>С кем вы на борту?</legend><div class="family-row"><label for="sibsp">Братья, сёстры,<br>супруг или супруга</label><div class="stepper"><button type="button" data-step="-1" data-target="sibsp" aria-label="Уменьшить число братьев, сестёр и супругов">−</button><input type="number" id="sibsp" name="sibsp" required min="0" max="20" step="1" value="0" aria-label="Число братьев, сестёр и супругов"><button type="button" data-step="1" data-target="sibsp" aria-label="Увеличить число братьев, сестёр и супругов">+</button></div></div><div class="family-row"><label for="parch">Родители и дети</label><div class="stepper"><button type="button" data-step="-1" data-target="parch" aria-label="Уменьшить число родителей и детей">−</button><input type="number" id="parch" name="parch" required min="0" max="20" step="1" value="0" aria-label="Число родителей и детей"><button type="button" data-step="1" data-target="parch" aria-label="Увеличить число родителей и детей">+</button></div></div></fieldset>
+            <details class="travel-details"><summary><span><svg><use href="#i-anchor"/></svg> Детали путешествия</span><svg class="chevron"><use href="#i-chevron"/></svg></summary><div class="details-fields"><div class="field"><label for="deck">Палуба</label><select id="deck" name="deck"><option value="UNKNOWN">Неизвестна</option value="A">Палуба A</option><option value="B">Палуба B</option><option value="C">Палуба C</option><option value="D">Палуба D</option><option value="E">Палуба E</option><option value="F">Палуба F</option><option value="G">Палуба G</option><option value="T">Палуба T</option></select></div><div class="field"><label for="fare">Цена билета, £ <span>1912 года</span></label><input id="fare" name="fare" type="number" min="0" max="1000" step="0.0001" placeholder="Неизвестна"></div><div class="field full-width"><label for="embarked">Порт посадки</label><select id="embarked" name="embarked"><option value="S">Саутгемптон, Англия</option><option value="C">Шербур, Франция</option><option value="Q">Квинстаун, Ирландия</option><option value="UNKNOWN">Неизвестен</option></select></div></div><p class="detail-hint">Не знаете возраст или цену? Оставьте поле пустым — модель учтёт пропуск.</p></details>
+            <div id="form-error" class="form-error" role="alert" hidden></div>
+            <button type="submit" id="predict-button" class="primary-button" disabled><span id="predict-label">Узнать свою историю</span><svg><use href="#i-arrow"/></svg></button>
+            <p class="form-footnote"><span class="tiny-square"></span> Ваши данные остаются на этом компьютере</p>
+          </form>
+        </section>
+
+        <section class="expedition" aria-label="Ваше путешествие и прогноз">
+          <div class="scene" id="scene">
+            <img class="scene-art" src="/assets/titanic-night.png" alt="Пиксельный «Титаник» с золотыми огнями плывёт по ночной Атлантике" fetchpriority="high">
+            <div class="scene-shade"></div><div class="scene-grain" aria-hidden="true"></div>
+            <div class="scene-top"><div class="scene-location"><span class="live-dot"></span> СЕВЕРНАЯ АТЛАНТИКА</div><span class="scene-date">10 АПРЕЛЯ 1912</span></div>
+            <span class="corner corner-tl"></span><span class="corner corner-tr"></span><span class="corner corner-bl"></span><span class="corner corner-br"></span>
+            <div class="scene-bottom"><div><span class="scene-caption">ЛЕГЕНДАРНЫЙ ПЕРВЫЙ РЕЙС</span><h2>R.M.S. TITANIC</h2></div><div class="scene-coordinates"><svg><use href="#i-compass"/></svg><span>КУРС НА<br>НОВУЮ ИСТОРИЮ</span></div></div>
+            <div class="scanning" aria-hidden="true"><div></div><span>НЕЙРОСЕТЬ ИЗУЧАЕТ ВАШ БИЛЕТ…</span></div>
+          </div>
+
+          <div class="boarding-pass" aria-label="Ваш посадочный билет">
+            <div class="ticket-symbol"><svg><use href="#i-ship"/></svg></div><div class="ticket-main"><span class="ticket-eyebrow">BOARDING PASS <span>•</span> ПОСАДОЧНЫЙ БИЛЕТ</span><strong id="ticket-name">ВАША ИСТОРИЯ</strong><div class="ticket-route"><span id="ticket-port">САУТГЕМПТОН</span><svg><use href="#i-arrow"/></svg><span>НЬЮ-ЙОРК</span></div></div><div class="ticket-stub"><span>КЛАСС</span><strong id="ticket-class">II</strong><small id="ticket-deck">ПАЛУБА —</small></div>
+          </div>
+
+          <section class="result-panel" id="result-panel" aria-labelledby="result-title" aria-live="polite" aria-atomic="true">
+            <div class="result-emblem" id="result-emblem"><svg class="compass-icon"><use href="#i-compass"/></svg><strong id="probability-value">—</strong><span id="probability-caption">ВАШ ШАНС</span></div><div class="result-content"><span class="step-label" id="result-kicker">ШАГ 02 · УЗНАЙТЕ ИСХОД</span><h2 id="result-title">История ещё не написана</h2><p id="result-copy">Каждый пассажир — своя судьба.<br>Заполните билет и отправляйтесь в путешествие.</p><div class="probability-track" id="probability-track" hidden><progress id="probability-progress" max="100" value="0" aria-label="Оценка вероятности выживания"></progress><div><span>0%</span><span>Вероятность выживания</span><span>100%</span></div></div><p class="result-missing" id="result-missing" hidden></p></div>
+          </section>
+          <div class="experiment-note"><svg><use href="#i-info"/></svg><p>История реальна. Ваш сценарий — эксперимент.<br><span>Процент показывает оценку модели, а не точную вероятность личного исхода.</span></p></div>
+        </section>
+      </div>
+
+      <footer><div class="footer-source"><span class="footer-diamond">✦</span><span>ОСНОВАНО НА РЕАЛЬНЫХ ДАННЫХ</span></div><div class="footer-stats"><span><b id="dataset-stat">1 309</b> пассажиров</span><i></i><span><b id="accuracy-stat">78,2%</b> точность на тесте</span><i></i><button id="method-open" type="button">Как это работает <span>↗</span></button></div></footer>
+    </main>
+  </div>
+
+  <dialog id="about-dialog" aria-labelledby="about-title"><div class="dialog-inner"><button class="icon-button dialog-close" type="button" id="about-close" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button><span class="eyebrow">ЗА КУЛИСАМИ ЭКСПЕДИЦИИ</span><h2 id="about-title">История встречает<br><em>нейросеть.</em></h2><p>Этот симулятор использует настоящую обученную нейросеть. Она ищет закономерности в данных пассажиров «Титаника» и оценивает вероятность выживания для вашего билета.</p><div class="about-stats"><div><strong id="about-dataset">1 309</strong><span>записей в датасете</span></div><div><strong id="about-accuracy">78,2%</strong><span>точность на тесте</span></div><div><strong id="about-test">261</strong><span>пассажир в тесте</span></div></div><h3>Что влияет на прогноз</h3><p>Пол, возраст, класс билета, число родственников, цена проезда, палуба и порт посадки. Имя на билете — только часть вашей истории и не влияет на результат.</p><h3>Как проверяли модель</h3><p>Обучение, выбор модели и итоговая проверка выполнены на разных частях данных. Пассажиры с одинаковым билетом остаются в одной части. Сведения о спасательной шлюпке и найденном теле исключены.</p><h3>Что означает процент</h3><p>Это оценка небольшой модели по ограниченному набору признаков. Она может ошибаться; вероятности отдельно не калибровались. Палуба описывает каюту, а не местонахождение человека во время катастрофы.</p><a href="https://www.kaggle.com/datasets/vinicius150987/titanic3" target="_blank" rel="noreferrer" class="source-link">Датасет на Kaggle <span>↗</span></a></div></dialog>
+  <noscript>Для работы интерфейса включите JavaScript в браузере.</noscript>
+</body>
+</html>

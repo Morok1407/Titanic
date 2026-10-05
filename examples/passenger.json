@@ -1,0 +1,10 @@
+{
+  "sex": "female",
+  "pclass": 2,
+  "age": 28,
+  "sibsp": 0,
+  "parch": 0,
+  "fare": null,
+  "deck": "UNKNOWN",
+  "embarked": "S"
+}

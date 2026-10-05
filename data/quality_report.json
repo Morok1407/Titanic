@@ -1,0 +1,53 @@
+{
+  "source_url": "https://www.kaggle.com/datasets/vinicius150987/titanic3",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/vinicius150987/titanic3",
+  "download_date": "2026-10-02",
+  "rows": 1309,
+  "columns": [
+    "pclass",
+    "survived",
+    "name",
+    "sex",
+    "age",
+    "sibsp",
+    "parch",
+    "ticket",
+    "fare",
+    "cabin",
+    "embarked",
+    "boat",
+    "body",
+    "home.dest"
+  ],
+  "survival_counts": {
+    "1": 500,
+    "0": 809
+  },
+  "missing": {
+    "pclass": 0,
+    "survived": 0,
+    "name": 0,
+    "sex": 0,
+    "age": 263,
+    "sibsp": 0,
+    "parch": 0,
+    "ticket": 0,
+    "fare": 1,
+    "cabin": 1014,
+    "embarked": 2,
+    "boat": 823,
+    "body": 1188,
+    "home.dest": 564
+  },
+  "duplicate_rows": 0,
+  "exclude_from_features": [
+    "survived",
+    "boat",
+    "body"
+  ],
+  "sha256": {
+    "data/raw/titanic3.zip": "73b24cb80359210f3542a478ffbdcc8144f4290a3bd5a5d2ab7c0189a74294bb",
+    "data/raw/titanic3/titanic3.xls": "ce9c13e4e1b78ae312020a5e591ae21746da1f6e857a22e8b3869edd12730c55",
+    "data/titanic.csv": "09ccb61498a488df6f8de28c15ede3ae98f2793e6daef90c83f25ffa1d521800"
+  }
+}

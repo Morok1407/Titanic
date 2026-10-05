@@ -1,0 +1,230 @@
+{
+  "created_at_utc": "2026-10-04T16:05:03.972095+00:00",
+  "dataset_sha256": "09ccb61498a488df6f8de28c15ede3ae98f2793e6daef90c83f25ffa1d521800",
+  "seed": 42,
+  "split_method": "Greedy class-balanced ticket groups: 5 folds; folds 0–2 train, 3 validation, 4 test",
+  "splits": {
+    "train": {
+      "rows": 786,
+      "survived": 300
+    },
+    "validation": {
+      "rows": 262,
+      "survived": 100
+    },
+    "test": {
+      "rows": 261,
+      "survived": 100
+    }
+  },
+  "input_features": [
+    "age",
+    "fare_log",
+    "sibsp",
+    "parch",
+    "family_size",
+    "sex",
+    "pclass",
+    "deck",
+    "embarked"
+  ],
+  "encoded_features": [
+    "age",
+    "fare_log",
+    "sibsp",
+    "parch",
+    "family_size",
+    "missing_age",
+    "sex_female",
+    "sex_male",
+    "pclass_1",
+    "pclass_2",
+    "pclass_3",
+    "deck_A",
+    "deck_B",
+    "deck_C",
+    "deck_D",
+    "deck_E",
+    "deck_F",
+    "deck_G",
+    "deck_T",
+    "deck_UNKNOWN",
+    "embarked_C",
+    "embarked_Q",
+    "embarked_S",
+    "embarked_UNKNOWN"
+  ],
+  "excluded_columns": [
+    "survived",
+    "boat",
+    "body",
+    "name",
+    "ticket",
+    "home.dest"
+  ],
+  "candidates": [
+    {
+      "layers": [
+        16
+      ],
+      "alpha": 0.01,
+      "best_epoch": 44,
+      "epochs_run": 84,
+      "validation_log_loss": 0.43885584482475326,
+      "seconds": 0.15955579999717884
+    },
+    {
+      "layers": [
+        32,
+        16
+      ],
+      "alpha": 0.01,
+      "best_epoch": 25,
+      "epochs_run": 65,
+      "validation_log_loss": 0.4545988005537333,
+      "seconds": 0.19658049999270588
+    },
+    {
+      "layers": [
+        32,
+        16
+      ],
+      "alpha": 0.1,
+      "best_epoch": 25,
+      "epochs_run": 65,
+      "validation_log_loss": 0.4532292764887307,
+      "seconds": 0.1928980000084266
+    }
+  ],
+  "selected_candidate": 0,
+  "selection_metric": "validation_log_loss",
+  "threshold": 0.5,
+  "training": {
+    "n": 786,
+    "accuracy": 0.8295165394402035,
+    "accuracy_wilson_95": [
+      0.8016384630348524,
+      0.8541892371014786
+    ],
+    "log_loss": 0.4160103168602033,
+    "roc_auc": 0.8745301783264746,
+    "precision": 0.8007246376811594,
+    "recall": 0.7366666666666667,
+    "f1": 0.7673611111111112,
+    "brier_score": 0.1309793768048686,
+    "confusion_matrix": [
+      [
+        431,
+        55
+      ],
+      [
+        79,
+        221
+      ]
+    ]
+  },
+  "validation": {
+    "n": 262,
+    "accuracy": 0.8129770992366412,
+    "accuracy_wilson_95": [
+      0.761362762842237,
+      0.8555459527237239
+    ],
+    "log_loss": 0.43885584482475326,
+    "roc_auc": 0.8555864197530865,
+    "precision": 0.7575757575757576,
+    "recall": 0.75,
+    "f1": 0.7537688442211056,
+    "brier_score": 0.13852154801274583,
+    "confusion_matrix": [
+      [
+        138,
+        24
+      ],
+      [
+        25,
+        75
+      ]
+    ]
+  },
+  "test": {
+    "n": 261,
+    "accuracy": 0.7816091954022989,
+    "accuracy_wilson_95": [
+      0.7275976125034842,
+      0.8274511411666341
+    ],
+    "log_loss": 0.48567545562717335,
+    "roc_auc": 0.8252795031055901,
+    "precision": 0.7362637362637363,
+    "recall": 0.67,
+    "f1": 0.7015706806282722,
+    "brier_score": 0.15513256321844945,
+    "confusion_matrix": [
+      [
+        137,
+        24
+      ],
+      [
+        33,
+        67
+      ]
+    ]
+  },
+  "baselines_test": {
+    "constant_train_prevalence": {
+      "n": 261,
+      "accuracy": 0.6168582375478927,
+      "accuracy_wilson_95": [
+        0.556587499736491,
+        0.6737388538272995
+      ],
+      "log_loss": 0.6655857736031545,
+      "roc_auc": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "brier_score": 0.23634629085239836,
+      "confusion_matrix": [
+        [
+          161,
+          0
+        ],
+        [
+          100,
+          0
+        ]
+      ]
+    },
+    "logistic_regression": {
+      "n": 261,
+      "accuracy": 0.7586206896551724,
+      "accuracy_wilson_95": [
+        0.7031952420886387,
+        0.8065434092410617
+      ],
+      "log_loss": 0.49542802988200213,
+      "roc_auc": 0.8192546583850931,
+      "precision": 0.7078651685393258,
+      "recall": 0.63,
+      "f1": 0.6666666666666666,
+      "brier_score": 0.16137068736734564,
+      "confusion_matrix": [
+        [
+          135,
+          26
+        ],
+        [
+          37,
+          63
+        ]
+      ]
+    }
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1"
+  },
+  "total_seconds": 1.325040399999125
+}

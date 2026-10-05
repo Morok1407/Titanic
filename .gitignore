@@ -1,0 +1,8 @@
+.tools/
+.venv/
+__pycache__/
+*.pyc
+.env
+kaggle.json
+*.log
+reports/ui-checks/
