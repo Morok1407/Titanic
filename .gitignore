@@ -6,3 +6,6 @@ __pycache__/
 kaggle.json
 *.log
 reports/ui-checks/
+.build-venv/
+build/
+dist/
